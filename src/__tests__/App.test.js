@@ -1,9 +1,18 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import App from "./App";
+import App from "../components/App";
+import AppProviders from "../components/AppProviders";
+
+function withProviders(Component) {
+  return (
+    <AppProviders>
+      <Component />
+    </AppProviders>
+  );
+}
 
 test("renders login", () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const { getByText } = render(withProviders(App));
+  const loginButton = getByText(/login/i);
+  expect(loginButton).toBeInTheDocument();
 });
