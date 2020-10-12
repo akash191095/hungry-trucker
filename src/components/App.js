@@ -1,6 +1,57 @@
-import React from "react";
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import { useAuth } from "../contexts/auth";
+import { useUser } from "../contexts/user-context";
+import Login from "../pages/Login";
+
+function RouteProviders({ children }) {
+  return (
+    <Router>
+      <Switch>{children}</Switch>
+    </Router>
+  );
+}
+
+function AuthenticatedApp() {
+  return (
+    <RouteProviders>
+      <Route path="/" exact>
+        'Hello from Home'
+      </Route>
+      <Route to="/login">
+        <Redirect to="/" />
+      </Route>
+    </RouteProviders>
+  );
+}
+
+function UnauthenticatedApp() {
+  return (
+    <RouteProviders>
+      <Route path="/login">
+        <Login />
+      </Route>
+      <Route path="/*">
+        <Redirect to="/login" />
+      </Route>
+    </RouteProviders>
+  );
+}
+
 function App() {
-  return <div>Hello from App.js</div>;
+  const user = useUser();
+  const { login } = useAuth();
+
+  useEffect(() => {
+    login();
+  }, [login]);
+
+  return user?.email ? <AuthenticatedApp /> : <UnauthenticatedApp />;
 }
 
 export default App;
