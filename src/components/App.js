@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { useAuth } from "../contexts/auth";
 import { useUser } from "../contexts/user-context";
+import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 
@@ -22,7 +23,7 @@ function AuthenticatedApp() {
   return (
     <RouteProviders>
       <Route path="/" exact>
-        'Hello from Home'
+        <Home />
       </Route>
       <Route to="/login">
         <Redirect to="/" />
