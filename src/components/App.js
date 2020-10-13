@@ -9,6 +9,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import styled from "styled-components";
 import { useAuth } from "../contexts/auth";
 import { useUser } from "../contexts/user-context";
+import Nav from "./layout/Nav";
 const Home = lazy(() => import("../pages/Home"));
 const Login = lazy(() => import("../pages/Login"));
 const Register = lazy(() => import("../pages/Register"));
@@ -32,6 +33,7 @@ function Providers({ children }) {
       }
     >
       <Router>
+        <Nav />
         <Switch>{children}</Switch>
       </Router>
     </Suspense>

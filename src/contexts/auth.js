@@ -42,9 +42,19 @@ function AuthProvider(props) {
     }
   }, []);
 
-  const value = useMemo(() => ({ data, login, signUp, fetching }), [
+  const logout = useCallback(async () => {
+    try {
+      await axios.get("/signout");
+      setData({ user: null });
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  const value = useMemo(() => ({ data, login, logout, signUp, fetching }), [
     data,
     login,
+    logout,
     signUp,
     fetching,
   ]);

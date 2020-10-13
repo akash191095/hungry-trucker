@@ -82,7 +82,7 @@ function Home() {
         center={position}
         zoom={initialState.zoom}
         onmoveend={handleMove}
-        style={{ height: "100vh" }}
+        style={{ height: "100vh", zIndex: 10 }}
       >
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
