@@ -1,40 +1,59 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
+import styled from "styled-components";
 import { useAuth } from "../contexts/auth";
 import { useUser } from "../contexts/user-context";
-import Home from "../pages/Home";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
+const Home = lazy(() => import("../pages/Home"));
+const Login = lazy(() => import("../pages/Login"));
+const Register = lazy(() => import("../pages/Register"));
 
-function RouteProviders({ children }) {
+const Spinner = styled.div`
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+function Providers({ children }) {
   return (
-    <Router>
-      <Switch>{children}</Switch>
-    </Router>
+    <Suspense
+      fallback={
+        <Spinner className="sweet-loading">
+          <ClipLoader size={150} color="black" loading />
+        </Spinner>
+      }
+    >
+      <Router>
+        <Switch>{children}</Switch>
+      </Router>
+    </Suspense>
   );
 }
 
 function AuthenticatedApp() {
   return (
-    <RouteProviders>
+    <Providers>
       <Route path="/" exact>
         <Home />
       </Route>
       <Route to="/login">
         <Redirect to="/" />
       </Route>
-    </RouteProviders>
+    </Providers>
   );
 }
 
 function UnauthenticatedApp() {
   return (
-    <RouteProviders>
+    <Providers>
       <Route path="/login">
         <Login />
       </Route>
@@ -44,7 +63,7 @@ function UnauthenticatedApp() {
       <Route path="/*">
         <Redirect to="/login" />
       </Route>
-    </RouteProviders>
+    </Providers>
   );
 }
 

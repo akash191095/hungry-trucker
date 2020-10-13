@@ -12,17 +12,17 @@ function withProviders(Component) {
   );
 }
 
-test("renders login", () => {
-  const { getByText } = render(withProviders(App));
-  const loginButton = getByText(/login/i);
+test("renders login", async () => {
+  const { findByText } = render(withProviders(App));
+  const loginButton = await findByText(/login/i);
   expect(loginButton).toBeInTheDocument();
 });
 
-test("renders register page", () => {
-  const { getByText } = render(withProviders(App));
-  const signUpLink = getByText(/register/i);
+test("renders register page", async () => {
+  const { findByText } = render(withProviders(App));
+  const signUpLink = await findByText(/register/i);
   expect(signUpLink).toBeInTheDocument();
   userEvent.click(signUpLink);
-  const loginLink = getByText(/go to login/i);
+  const loginLink = await findByText(/go to login/i);
   expect(loginLink).toBeInTheDocument();
 });
