@@ -8,6 +8,7 @@ import {
 import { useAuth } from "../contexts/auth";
 import { useUser } from "../contexts/user-context";
 import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 function RouteProviders({ children }) {
   return (
@@ -35,6 +36,9 @@ function UnauthenticatedApp() {
     <RouteProviders>
       <Route path="/login">
         <Login />
+      </Route>
+      <Route path="/register">
+        <Register />
       </Route>
       <Route path="/*">
         <Redirect to="/login" />

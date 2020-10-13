@@ -24,15 +24,28 @@ function AuthProvider(props) {
       }
     } catch (error) {
       if (error.response) return { error: error.response };
-      return { error: null };
     } finally {
       setFetching(false);
     }
   }, []);
 
-  const value = useMemo(() => ({ data, login, fetching }), [
+  const signUp = useCallback(async (email, password) => {
+    try {
+      setFetching(true);
+      const { data } = await axios.post("/signup", { email, password });
+      setData({ ...data, user: data });
+      setFetching(false);
+    } catch (error) {
+      if (error.response) return { error: error.response };
+    } finally {
+      setFetching(false);
+    }
+  }, []);
+
+  const value = useMemo(() => ({ data, login, signUp, fetching }), [
     data,
     login,
+    signUp,
     fetching,
   ]);
 

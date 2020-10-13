@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/auth";
 import {
   Button,
   Paper,
@@ -8,7 +9,6 @@ import {
   Typography,
   Link as MUILink,
 } from "@material-ui/core";
-import { useAuth } from "../contexts/auth";
 
 const Container = styled.main`
   display: flex;
@@ -39,16 +39,16 @@ const Error = styled.p`
   height: 1em;
 `;
 
-function Login() {
-  const { login, fetching } = useAuth();
+function Register() {
+  const { signUp, fetching } = useAuth();
   const [error, setError] = useState("");
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
 
-  async function handleLogin(event) {
+  async function handleSignUp(event) {
     event.preventDefault();
     if (email && password) {
-      const response = await login(email, password);
+      const response = await signUp(email, password);
       if (response) setError(response.error.data.message);
     }
   }
@@ -56,9 +56,9 @@ function Login() {
   return (
     <Container>
       <Paper elevation={3}>
-        <StyledForm onSubmit={handleLogin}>
+        <StyledForm onSubmit={handleSignUp}>
           <Typography component="h1" variant="h2">
-            Sign In
+            Register
           </Typography>
           <TextField
             variant="outlined"
@@ -85,11 +85,11 @@ function Login() {
               type="submit"
               disabled={fetching && true}
             >
-              Login
+              Submit
             </Button>
-            <MUILink component={Link} to="/register">
+            <MUILink component={Link} to="/login">
               <Button variant="contained" color="secondary">
-                Register
+                Go to Login
               </Button>
             </MUILink>
           </div>
@@ -100,4 +100,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;
