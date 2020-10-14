@@ -64,4 +64,4 @@ function AuthProvider(props) {
 
 const useAuth = () => React.useContext(AuthContext);
 
-export { AuthProvider, useAuth };
+export { AuthProvider, useAuth, AuthContext };
