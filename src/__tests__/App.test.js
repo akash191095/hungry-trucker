@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "../components/App";
 import { AuthContext } from "../contexts/auth";
@@ -20,7 +20,10 @@ const customRender = (
   { providerProps, ...renderOptions } = { providerProps: {} }
 ) => {
   return render(
-    <AuthContext.Provider {...defaultProviderProps} {...providerProps}>
+    <AuthContext.Provider
+      {...providerProps}
+      value={{ ...defaultProviderProps.value, ...providerProps.value }}
+    >
       <UserProvider>{ui}</UserProvider>
     </AuthContext.Provider>,
     renderOptions
@@ -39,4 +42,22 @@ test("renders register page", async () => {
   userEvent.click(signUpLink);
   const loginLink = await findByText(/go to login/i);
   expect(loginLink).toBeInTheDocument();
+});
+
+test("auto logs in user", async () => {
+  const providerProps = {
+    value: {
+      data: {
+        user: {
+          email: "test@gmail.com",
+        },
+      },
+    },
+  };
+
+  const { findByText } = customRender(<App />, {
+    providerProps,
+  });
+  const logoutButton = await findByText(/logout/i);
+  expect(logoutButton).toBeInTheDocument();
 });
