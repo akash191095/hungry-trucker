@@ -1,68 +1,61 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Client
 
-## Available Scripts
+## This is Hungry Trucker
 
-In the project directory, you can run:
+### An application that helps you find food trucks near you.
 
-### `npm start`
+#### Full-stack submission
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### [Front-end](https://github.com/akash191095/hungry-trucker)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+#### [Back-end](https://github.com/akash191095/hungry-trucker-server)
 
-### `npm test`
+## Info
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+We are using create-react-app to bootstrap the application.
+```
 
-### `npm run build`
+## Setup
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+1. Run `npm install` to install the dependencies.
+2. Run `npm start` to start the application.
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Environment Config
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+REACT_APP_API_LINK = http://localhost:5000
+1. This is the backend api link, use localhost when using in local environment or replace with the prod link for production.
 
-### `npm run eject`
+REACT_APP_API_TOKEN = 'token'
+2. This is the token needed for food truck data.
+2.1. Link: https://dev.socrata.com/foundry/data.sfgov.org/rqzj-sfat
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Deployment
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+We are using netlify to deploy this.
+Link: https://fervent-elion-a03cef.netlify.app/
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## More Info
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Tech used
 
-## Learn More
+- I am using react.js for this front-end.
+- Auth is being handled by the backend server, it's a jwt system and uses cookies to store the token in the browser.
+- Using Material UI as the ui framework, I like this framework and have a lot of experience using this, so this was the natural choice.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Tests
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Using react-testing-library with jest, thanks to Kent!
 
-### Code Splitting
+## Things I might have done
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- Use react-query for caching the data and overall website experience.
+- Put more focus on pwa
+- Add a search bar on the map to search for a location
+- Send a link of a food truck on google maps to get navigation details
