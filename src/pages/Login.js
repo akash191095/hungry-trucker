@@ -64,7 +64,7 @@ function Login() {
             variant="outlined"
             id="username"
             label="Email"
-            helperText="Please enter you email"
+            helperText="Please enter your email"
             required
             onChange={(e) => setEmail(e.target.value)}
             type="email"
@@ -73,7 +73,7 @@ function Login() {
             variant="outlined"
             id="password"
             label="Password"
-            helperText="Please enter you password"
+            helperText="Please enter your password"
             required
             onChange={(e) => setPassword(e.target.value)}
             type="password"
