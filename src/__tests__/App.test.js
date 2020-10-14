@@ -1,9 +1,9 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import App from "../components/App";
 import { AuthContext } from "../contexts/auth";
 import { UserProvider } from "../contexts/user-context";
+import App from "../components/App";
 
 const defaultProviderProps = {
   value: {
